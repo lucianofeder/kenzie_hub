@@ -21,6 +21,7 @@ export const LogoSection = styled.div`
   align-items: center;
   color: #ecf0f3;
   margin-left: 30px;
+  cursor: pointer;
 `;
 
 export const H2 = styled.h2`

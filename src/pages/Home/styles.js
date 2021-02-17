@@ -73,9 +73,11 @@ export const Button = styled.button`
   font-weight: 700;
   transition: 500ms;
   font-size: 0.9rem;
+  letter-spacing: 1px;
   &:hover {
     background-color: ${secundaryColor_Darker};
     border: 2px solid ${secundaryColor_Darker};
+    letter-spacing: 2px;
   }
   &:focus {
     outline: none;

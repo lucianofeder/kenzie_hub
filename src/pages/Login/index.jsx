@@ -14,9 +14,13 @@ import {
   DivLeft,
   Form,
   Logo,
+  InputArea,
+  H2,
+  Button,
+  Info,
+  Link,
 } from "./styles";
 import { Container } from "../../styles/container";
-import Button from "@material-ui/core/Button";
 
 import login_img from "../../img/login_img.svg";
 import { FaUserAlt, FaLock } from "react-icons/fa";
@@ -65,21 +69,30 @@ const Login = (props) => {
           <FormContainer>
             <Form onSubmit={handleSubmit(handleLogin)}>
               <Logo src={kenzie_logo} alt="Kenzie Logo" />
-              <h2>Login to K-Hub</h2>
-              <InputDiv>
-                <FaUserAlt />
-                <InputLogin placeholder="Email" name="email" ref={register} />
-              </InputDiv>
-              <InputDiv>
-                <FaLock />
-                <InputLogin
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  ref={register}
-                />
-              </InputDiv>
+              <H2>Login to K-Hub</H2>
+              <InputArea>
+                <InputDiv>
+                  <FaUserAlt />
+                  <InputLogin placeholder="Email" name="email" ref={register} />
+                </InputDiv>
+                <InputDiv>
+                  <FaLock />
+                  <InputLogin
+                    placeholder="Password"
+                    name="password"
+                    type="password"
+                    ref={register}
+                  />
+                </InputDiv>
+              </InputArea>
               <Button type="submit">Login</Button>
+              <Info>
+                <Link onClick={() => console.log("Feature desabilitada")}>
+                  Forgot your Password?
+                </Link>{" "}
+                or{" "}
+                <Link onClick={() => history.push("new_user")}>Sign Up!</Link>{" "}
+              </Info>
             </Form>
           </FormContainer>
         </Grid>
