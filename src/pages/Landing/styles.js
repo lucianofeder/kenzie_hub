@@ -18,6 +18,9 @@ export const DivRight = styled.div`
   flex-flow: column;
   padding: 12vh 0;
   padding-left: 3vw;
+  @media (max-width: 600px) {
+    align-items: center;
+  }
 `;
 
 export const DivLeft = styled(DivRight)`
@@ -25,6 +28,9 @@ export const DivLeft = styled(DivRight)`
   padding: 0;
   justify-content: center;
   align-items: center;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export const Img = styled.img`
@@ -40,6 +46,9 @@ export const Logo = styled.img`
 
 export const TextArea = styled.div`
   text-align: left;
+  @media (max-width: 600px) {
+    text-align: center;
+  }
 `;
 
 export const H1 = styled.h1`

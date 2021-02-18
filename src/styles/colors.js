@@ -1,6 +1,9 @@
 export const primaryColor = "#00356b";
+export const whiteBlueColor = "#eff0f3";
 export const secundaryColor = "#f35d56";
 export const secundaryColor_Darker = "#c54d47";
 export const whiteColor = "#ecf0f3";
+export const cardColor = "#fff";
+export const cardBorderColor = "#cbced1";
 export const lightShadowColor = "#fff";
 export const darkShadowColor = "#cbced1";

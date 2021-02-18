@@ -4,10 +4,23 @@ import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 
-import InputForm from "../../components/InputForm";
-import Button from "@material-ui/core/Button";
+import blob_1 from "../../img/blob_1.svg";
+import blob_2 from "../../img/blob_2.svg";
+import blob_3 from "../../img/blob_3.svg";
 
-import { Form } from "./styles";
+import InputForm from "../../components/InputForm";
+import Grid from "@material-ui/core/Grid";
+
+import {
+  Form,
+  H2,
+  SelectArea,
+  SelectLabel,
+  Select,
+  Img,
+  Textarea,
+  ButtonSubmit,
+} from "./styles";
 import { Label } from "../../components/InputForm/styles";
 
 const NewUser = () => {
@@ -59,83 +72,96 @@ const NewUser = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(handleData)}>
-        <InputForm
-          name="name"
-          reference={register}
-          type="text"
-          placeholder="Full Name"
-          label="Full Name"
-          erro={errors.full_name?.message}
-        />
+      <Grid container justify="center" alignItems="center">
+        <Grid item xs={false} sm={3}>
+          <Img src={blob_1} alt="Decoration" />
+          <Img src={blob_2} alt="Decoration" />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Form onSubmit={handleSubmit(handleData)}>
+            <H2>Create Account</H2>
+            <InputForm
+              name="name"
+              reference={register}
+              type="text"
+              placeholder="Full Name"
+              label="Full Name"
+              erro={errors.full_name?.message}
+            />
 
-        <InputForm
-          name="email"
-          reference={register}
-          type="email"
-          placeholder="Email ex.: test@test.com"
-          label="Email"
-          erro={errors.email?.message}
-        />
+            <InputForm
+              name="email"
+              reference={register}
+              type="email"
+              placeholder="Email ex.: test@test.com"
+              label="Email"
+              erro={errors.email?.message}
+            />
 
-        <InputForm
-          name="email_checker"
-          reference={register}
-          type="email"
-          placeholder="Confirm your Email"
-          label="Confirm your email"
-          erro={errors.email_checker?.message}
-        />
+            <InputForm
+              name="email_checker"
+              reference={register}
+              type="email"
+              placeholder="Confirm your Email"
+              label="Confirm your email"
+              erro={errors.email_checker?.message}
+            />
 
-        <InputForm
-          name="password"
-          reference={register}
-          type="password"
-          placeholder="Password"
-          label="Password"
-          erro={errors.password?.message}
-        />
+            <InputForm
+              name="password"
+              reference={register}
+              type="password"
+              placeholder="Password"
+              label="Password"
+              erro={errors.password?.message}
+            />
 
-        <InputForm
-          name="password_checker"
-          reference={register}
-          type="password"
-          placeholder="Confirm your password"
-          label="Confirm your password"
-          erro={errors.password_checker?.message}
-        />
+            <InputForm
+              name="password_checker"
+              reference={register}
+              type="password"
+              placeholder="Confirm your password"
+              label="Confirm your password"
+              erro={errors.password_checker?.message}
+            />
+            <SelectArea>
+              <SelectLabel for="course_module">Course Module:</SelectLabel>
+              <Select name="course_module" ref={register}>
+                <option value="Primeiro módulo (Introdução ao Frontend)">
+                  Primeiro módulo Q1
+                </option>
+                <option value="Segundo módulo (Frontend Avançado)">
+                  Segundo módulo Q2
+                </option>
+                <option value="Terceiro módulo (Introdução ao Backend)">
+                  Terceiro módulo Q3
+                </option>
+                <option value="Quarto módulo (Backend Avançado)">
+                  Quarto módulo Q4
+                </option>
+              </Select>
+            </SelectArea>
 
-        <Label for="course_module">Course Module</Label>
-        <select name="course_module" ref={register}>
-          <option value="Primeiro módulo (Introdução ao Frontend)">
-            Primeiro módulo Q1
-          </option>
-          <option value="Segundo módulo (Frontend Avançado)">
-            Segundo módulo Q2
-          </option>
-          <option value="Terceiro módulo (Introdução ao Backend)">
-            Terceiro módulo Q3
-          </option>
-          <option value="Quarto módulo (Backend Avançado)">
-            Quarto módulo Q4
-          </option>
-        </select>
+            <Label for="bio">Tell us more about you</Label>
+            <Textarea name="bio" placeholder="Biography" ref={register} />
 
-        <Label for="bio">Tell us more about you</Label>
-        <textarea name="bio" placeholder="Biography" ref={register} />
-
-        <InputForm
-          name="contact"
-          reference={register}
-          placeholder="Phone or link your socialmedia"
-          type="text"
-          label="Contact"
-          erro={errors.contact?.message}
-        />
-        <Button type="submit" color="secondary">
-          Create User
-        </Button>
-      </Form>
+            <InputForm
+              name="contact"
+              reference={register}
+              placeholder="Phone or link your socialmedia"
+              type="text"
+              label="Contact"
+              erro={errors.contact?.message}
+            />
+            <ButtonSubmit type="submit" color="secondary">
+              Create User
+            </ButtonSubmit>
+          </Form>
+        </Grid>
+        <Grid item xs={false} sm={3}>
+          <Img src={blob_3} alt="Decoration" />
+        </Grid>
+      </Grid>
     </>
   );
 };

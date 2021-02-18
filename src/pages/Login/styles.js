@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Input } from "../../components/InputForm/styles";
 import {
   primaryColor,
   secundaryColor,
@@ -25,7 +24,7 @@ export const InputDiv = styled.div`
   color: ${primaryColor};
 `;
 
-export const InputLogin = styled(Input)`
+export const InputLogin = styled.input`
   background-color: ${whiteColor};
   border: none;
   outline: none;

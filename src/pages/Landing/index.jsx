@@ -16,12 +16,12 @@ import {
 import landing_image from "../../img/landing_image.png";
 import kenzie_logo from "../../img/kenzie_logo.png";
 
-const Home = (props) => {
+const Landing = (props) => {
   const history = useHistory();
   return (
     <>
       <Grid container spacing={0}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={false} sm={6}>
           <DivLeft>
             <Img
               src={landing_image}
@@ -52,4 +52,4 @@ const Home = (props) => {
   );
 };
 
-export default Home;
+export default Landing;
