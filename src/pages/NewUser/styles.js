@@ -15,7 +15,6 @@ export const Form = styled.form`
   background-color: ${whiteColor};
   display: flex;
   margin: 50px auto;
-  margin-bottom: 70px;
   flex-flow: column;
   justify-content: center;
   align-items: center;

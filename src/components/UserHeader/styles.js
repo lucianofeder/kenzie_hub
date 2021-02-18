@@ -41,7 +41,7 @@ export const TextArea = styled.div`
 `;
 
 export const UserName = styled.h2`
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: ${primaryColor};
   margin: 0;
   font-weight: 700;

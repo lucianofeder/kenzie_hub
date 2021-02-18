@@ -16,7 +16,7 @@ export const Footer = styled.footer`
   color: ${darkShadowColor};
   height: 30px;
   font-size: 0.7rem;
-  position: absolute;
-  bottom: 0;
   width: 100vw;
+  position: relative;
+  z-index: 2;
 `;

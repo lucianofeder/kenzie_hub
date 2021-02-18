@@ -5,6 +5,8 @@ import api from "../../services/api";
 import { Container } from "../../styles/container";
 import Grid from "@material-ui/core/Grid";
 import UserHeader from "../../components/UserHeader";
+import UserSkills from "../../components/UserSkills";
+import UserWorks from "../../components/UserJobs";
 
 import { DivAside } from "./styles";
 
@@ -35,12 +37,12 @@ const User = (props) => {
         </Grid>
         <Grid item xs={12} sm={8}>
           <UserHeader user={user} />
-          <Grid container>
+          <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
-              <div>User Skills</div>
+              <UserSkills skills={user.techs} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <div>User jobs</div>
+              <UserWorks works={user.works} />
             </Grid>
           </Grid>
         </Grid>
