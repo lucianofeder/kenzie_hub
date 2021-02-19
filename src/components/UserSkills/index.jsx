@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { SkillsArea, Title, Text, TextArea, Img, Button } from "./styles";
 import skills_img from "../../img/skills_img.svg";
@@ -12,12 +12,6 @@ const UserSkills = (props) => {
   const toggleSkill = () => {
     setSkillOpen(!isSkillOpen);
   };
-
-  useEffect(() => {
-    if (listedSkills !== skills) {
-      setListedSkills(skills);
-    }
-  }, [listedSkills, skills]);
 
   return (
     <>

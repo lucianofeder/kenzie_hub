@@ -45,6 +45,7 @@ const MenuAddSkill = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => setListedWorks([...listedWorks, data]))
+      .then(() => reset())
       .catch((err) => console.log(err));
   };
 

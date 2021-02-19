@@ -14,12 +14,6 @@ const UserWorks = (props) => {
     setWorkOpen(!isWorkOpen);
   };
 
-  useEffect(() => {
-    if (listedWorks !== works) {
-      setListedWorks(works);
-    }
-  }, [listedWorks, works]);
-
   return (
     <>
       {isWorkOpen && (
