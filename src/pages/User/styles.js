@@ -23,9 +23,9 @@ const cardStructure = styled.div`
 export const DivAside = styled.div`
   width: 100%;
   height: 100%;
-  min-height: calc(100vh - 60px - 30px);
-  background-color: ${whiteColor};
   margin-top: 7px;
+  min-height: calc(100vh - 60px - 37px);
+  background-color: ${whiteColor};
 `;
 
 export const UserHeader = styled(cardStructure)`

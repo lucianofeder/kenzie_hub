@@ -17,7 +17,10 @@ export const UserHeader = (props) => {
   return (
     <Header>
       <UserInfo>
-        <UserAvatar src={male_avatar} alt="Personal avatar" />
+        <UserAvatar
+          src={user.avatar_url || male_avatar}
+          alt="Personal avatar"
+        />
         <TextArea>
           <UserName>{user.name}</UserName>
           <UserModule>{user.course_module}</UserModule>

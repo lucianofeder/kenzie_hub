@@ -18,7 +18,7 @@ export const DivRight = styled.div`
   flex-flow: column;
   padding: 12vh 0;
   padding-left: 3vw;
-  @media (max-width: 600px) {
+  @media (max-width: 599px) {
     align-items: center;
   }
 `;
@@ -28,7 +28,7 @@ export const DivLeft = styled(DivRight)`
   padding: 0;
   justify-content: center;
   align-items: center;
-  @media (max-width: 600px) {
+  @media (max-width: 599px) {
     display: none;
   }
 `;

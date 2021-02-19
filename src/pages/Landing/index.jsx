@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import Grid from "@material-ui/core/Grid";
 import {
@@ -16,8 +17,22 @@ import {
 import landing_image from "../../img/landing_image.png";
 import kenzie_logo from "../../img/kenzie_logo.png";
 
-const Landing = (props) => {
+const Landing = () => {
   const history = useHistory();
+
+  const [isLogged, setLogged] = useState(false);
+  const token = window.localStorage.getItem("authToken");
+  const user = JSON.parse(window.localStorage.getItem("user"));
+
+  useEffect(() => {
+    if (token && user && !isLogged) {
+      setLogged(true);
+    }
+    if ((!token || !user) && isLogged) {
+      setLogged(false);
+    }
+  }, [isLogged, token, user]);
+
   return (
     <>
       <Grid container spacing={0}>
@@ -38,12 +53,15 @@ const Landing = (props) => {
             </TextArea>
             <ButtonArea>
               <Button onClick={() => history.push("/new_user")}>Sign up</Button>
-              <ButtonLogin
-                onClick={() => history.push("/login")}
-                disabled={props.isLogged}
-              >
-                Login
-              </ButtonLogin>
+              {isLogged ? (
+                <ButtonLogin onClick={() => history.push(`/user/${user.id}`)}>
+                  Home
+                </ButtonLogin>
+              ) : (
+                <ButtonLogin onClick={() => history.push("/login")}>
+                  Login
+                </ButtonLogin>
+              )}
             </ButtonArea>
           </DivRight>
         </Grid>

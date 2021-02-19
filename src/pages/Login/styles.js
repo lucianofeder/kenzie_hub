@@ -108,3 +108,7 @@ export const Link = styled.span`
   color: ${primaryColor};
   cursor: pointer;
 `;
+
+export const Error = styled(Info)`
+  color: red;
+`;

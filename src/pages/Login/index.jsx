@@ -2,7 +2,7 @@ import api from "../../services/api";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 
@@ -19,6 +19,7 @@ import {
   Button,
   Info,
   Link,
+  Error,
 } from "./styles";
 import { Container } from "../../styles/container";
 
@@ -26,8 +27,23 @@ import login_img from "../../img/login_img.svg";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import kenzie_logo from "../../img/kenzie_logo.png";
 
-const Login = (props) => {
+const Login = () => {
   const history = useHistory();
+
+  const [isLogged, setLogged] = useState(false);
+  const [error, setError] = useState(false);
+  const token = window.localStorage.getItem("authToken");
+  const user = JSON.parse(window.localStorage.getItem("user"));
+
+  useEffect(() => {
+    if (token && user && !isLogged) {
+      setLogged(history.push(`/user/${user.id}`));
+    }
+    if ((!token || !user) && isLogged) {
+      setLogged(false);
+    }
+  }, [isLogged, token, user, history]);
+
   const schema = yup.object().shape({
     //informacoes a serem validadas antes de mandar parao backend
   });
@@ -41,21 +57,15 @@ const Login = (props) => {
       .post("/sessions", data)
       .then((res) => {
         console.log(res);
-        window.localStorage.clear();
-        window.localStorage.setItem("authToken", res.data.token);
-        props.setLogged(true);
-        history.push("/");
+        localStorage.clear();
+        localStorage.setItem("authToken", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        setLogged(true);
+        setError(false);
+        history.push(`/user/${res.data.user.id}`);
       })
-      .catch((err) => console.log(err));
+      .catch(() => setError(true));
   };
-
-  useEffect(() => {
-    const token = window.localStorage.getItem("authToken");
-
-    if (!token) {
-      props.setLogged(false);
-    }
-  });
 
   return (
     <Container>
@@ -70,6 +80,7 @@ const Login = (props) => {
             <Form onSubmit={handleSubmit(handleLogin)}>
               <Logo src={kenzie_logo} alt="Kenzie Logo" />
               <H2>Login to K-Hub</H2>
+              {error && <Error>Wrong login information</Error>}
               <InputArea>
                 <InputDiv>
                   <FaUserAlt />

@@ -45,6 +45,7 @@ export const UserName = styled.h2`
   color: ${primaryColor};
   margin: 0;
   font-weight: 700;
+  text-align: left;
 `;
 
 export const UserModule = styled.h3`
@@ -52,6 +53,7 @@ export const UserModule = styled.h3`
   color: #666;
   margin: 0;
   font-weight: 400;
+  text-align: left;
 `;
 
 export const UserInfo = styled.div`

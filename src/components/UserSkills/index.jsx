@@ -1,21 +1,41 @@
+import { useState } from "react";
+
 import { SkillsArea, Title, Text, TextArea, Img, Button } from "./styles";
 import skills_img from "../../img/skills_img.svg";
+import MenuAddSkill from "../MenuAddSkill";
 
 const UserSkills = (props) => {
-  const { skills } = props;
+  const { skills, owner, user } = props;
+  const [isSkillOpen, setSkillOpen] = useState(false);
+  const [listedSkills, setListedSkills] = useState(skills);
+
+  const toggleSkill = () => {
+    setSkillOpen(!isSkillOpen);
+  };
+
   return (
-    <SkillsArea>
-      <TextArea>
-        <Title>Skills</Title>
-        {skills.map((skill) => (
-          <Text>
-            {skill.title}: {skill.status}
-          </Text>
-        ))}
-      </TextArea>
-      <Img src={skills_img} alt="Representation of skills level" />
-      <Button>+</Button>
-    </SkillsArea>
+    <>
+      {isSkillOpen && (
+        <MenuAddSkill
+          toggleSkill={toggleSkill}
+          user={user}
+          listedSkills={listedSkills}
+          setListedSkills={setListedSkills}
+        ></MenuAddSkill>
+      )}
+      <SkillsArea>
+        <TextArea>
+          <Title>Skills</Title>
+          {listedSkills.map((skill) => (
+            <Text key={skill.id}>
+              {skill.title}: {skill.status}
+            </Text>
+          ))}
+        </TextArea>
+        <Img src={skills_img} alt="Representation of skills level" />
+        {owner && <Button onClick={toggleSkill}>+</Button>}
+      </SkillsArea>
+    </>
   );
 };
 

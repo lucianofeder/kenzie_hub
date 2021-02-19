@@ -6,28 +6,39 @@ import { Container } from "../../styles/container";
 import Grid from "@material-ui/core/Grid";
 import UserHeader from "../../components/UserHeader";
 import UserSkills from "../../components/UserSkills";
-import UserWorks from "../../components/UserJobs";
+import UserWorks from "../../components/UserWorks";
 
 import { DivAside } from "./styles";
 
-const User = (props) => {
+const User = () => {
   const history = useHistory();
   const params = useParams();
   const [user, setUser] = useState();
   const [loaded, setLoaded] = useState(false);
+  const [owner, setOwner] = useState(false);
 
   useEffect(() => {
     const userID = params.id;
+    const userStored = JSON.parse(window.localStorage.getItem("user"));
+    if (userStored) {
+      const userStoredID = userStored.id;
+      if (userStoredID === userID && !owner) {
+        setOwner(true);
+      }
+
+      if (userStoredID !== userID && owner) {
+        setOwner(false);
+      }
+    }
 
     if (!user) {
       api
         .get(`/users/${userID}`)
         .then((res) => setUser(res.data))
         .then(() => setLoaded(true))
-        .catch((err) => console.log(err));
+        .catch(() => history.push("/"));
     }
-    console.log(user);
-  }, [user, params.id]);
+  }, [user, params.id, history, owner]);
 
   return loaded ? (
     <Container>
@@ -39,10 +50,10 @@ const User = (props) => {
           <UserHeader user={user} />
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
-              <UserSkills skills={user.techs} />
+              <UserSkills skills={user.techs} owner={owner} user={user} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <UserWorks works={user.works} />
+              <UserWorks works={user.works} owner={owner} user={user} />
             </Grid>
           </Grid>
         </Grid>
@@ -52,7 +63,7 @@ const User = (props) => {
       </Grid>
     </Container>
   ) : (
-    <div>Oi</div>
+    <div></div>
   );
 };
 

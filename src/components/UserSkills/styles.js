@@ -88,7 +88,9 @@ export const Button = styled.button`
   background-color: ${secundaryColor};
   outline: none;
   cursor: pointer;
-  box-shadow: 3px 3px 3px ${darkShadowColor}, -3px -3px 3px ${lightShadowColor};
+
+  box-shadow: 0px 0px 1px #5f5f5f, 0px 0px 0px 2px ${lightShadowColor},
+    5px 5px 5px ${darkShadowColor}, -5px -5px 5px ${lightShadowColor};
   &:hover {
     background-color: ${secundaryColor_Darker};
   }

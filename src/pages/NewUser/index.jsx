@@ -153,9 +153,7 @@ const NewUser = () => {
               label="Contact"
               erro={errors.contact?.message}
             />
-            <ButtonSubmit type="submit" color="secondary">
-              Create User
-            </ButtonSubmit>
+            <ButtonSubmit type="submit">Create User</ButtonSubmit>
           </Form>
         </Grid>
         <Grid item xs={false} sm={3}>
