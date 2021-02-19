@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import male_avatar from "../../img/male_avatar.svg";
 import { Card, Img, H2, H3 } from "./styles";
@@ -16,11 +17,13 @@ const UserCard = (props) => {
   const history = useHistory();
 
   return (
-    <Card onClick={() => history.push(`/user/${user.id}`)}>
-      <Img src={user.avatar_url || male_avatar} alt="Profile pic" />
-      <H2>{name}</H2>
-      <H3>{user.email.toLowerCase()}</H3>
-    </Card>
+    <motion.div whileHover={{ scale: 1.15 }}>
+      <Card onClick={() => history.push(`/user/${user.id}`)}>
+        <Img src={user.avatar_url || male_avatar} alt="Profile pic" />
+        <H2>{name}</H2>
+        <H3>{user.email.toLowerCase()}</H3>
+      </Card>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-import { primaryColor } from "../../styles/colors";
+import {
+  primaryColor,
+  whiteColor,
+  darkShadowColor,
+  lightShadowColor,
+} from "../../styles/colors";
 
 export const Card = styled.div`
   margin: 10px;
@@ -21,6 +26,8 @@ export const Img = styled.img`
   height: 70px;
   margin: 0 auto;
   border-radius: 50%;
+  box-shadow: 0px 0px 2px #5f5f5f, 0px 0px 0px 5px ${whiteColor},
+    8px 8px 15px ${darkShadowColor}, -8px -8px 15px ${lightShadowColor};
 `;
 
 export const H2 = styled.h2`
