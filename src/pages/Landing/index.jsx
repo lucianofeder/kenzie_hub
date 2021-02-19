@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Grid from "@material-ui/core/Grid";
 import {

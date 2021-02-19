@@ -1,14 +1,5 @@
 import styled from "styled-components";
-import {
-  primaryColor,
-  secundaryColor,
-  secundaryColor_Darker,
-  whiteColor,
-  cardColor,
-  cardBorderColor,
-  darkShadowColor,
-  lightShadowColor,
-} from "../../styles/colors";
+import { primaryColor } from "../../styles/colors";
 import { cardStructure, Text } from "../UserSkills/styles";
 
 export const JobsArea = styled(cardStructure)``;

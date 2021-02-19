@@ -1,6 +1,5 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 

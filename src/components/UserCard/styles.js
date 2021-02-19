@@ -1,15 +1,6 @@
 import styled from "styled-components";
 
-import {
-  primaryColor,
-  secundaryColor,
-  secundaryColor_Darker,
-  whiteColor,
-  cardColor,
-  cardBorderColor,
-  darkShadowColor,
-  lightShadowColor,
-} from "../../styles/colors";
+import { primaryColor } from "../../styles/colors";
 
 export const Card = styled.div`
   margin: 10px;

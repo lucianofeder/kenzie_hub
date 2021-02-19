@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import {
   primaryColor,
-  secundaryColor,
-  secundaryColor_Darker,
   whiteColor,
   cardColor,
   cardBorderColor,
