@@ -15,26 +15,39 @@ import NotFound from "./pages/NotFound";
 const App = () => {
   const [isLogged, setLogged] = useState(false);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-  const [token, setToken] = useState(localStorage.getItem("authToken"));
 
   useEffect(() => {
-    if (token && user && !isLogged) {
+    const userStored = JSON.parse(localStorage.getItem("user"));
+    const tokenStored = localStorage.getItem("authToken");
+    if (tokenStored && userStored && !isLogged) {
       setLogged(true);
+      setUser(userStored);
     }
-    if ((!token || !user) && isLogged) {
+    if ((!tokenStored || !userStored) && isLogged) {
       setLogged(false);
+      setUser(null);
     }
-  }, [isLogged, token, user]);
+  }, [isLogged]);
 
   return (
     <div className="App">
-      <HeaderApp isLogged={isLogged} setLogged={setLogged} user={user} />
+      <HeaderApp
+        isLogged={isLogged}
+        setLogged={setLogged}
+        user={user}
+        setUser={setUser}
+      />
       <Switch>
         <Route exact path="/">
-          <Landing user={user} />
+          <Landing isLogged={isLogged} setLogged={setLogged} />
         </Route>
         <Route exact path="/login">
-          <Login isLogged={isLogged} setLogged={setLogged} />
+          <Login
+            isLogged={isLogged}
+            setLogged={setLogged}
+            user={user}
+            setUser={setUser}
+          />
         </Route>
         <Route exact path="/new_user">
           <NewUser />

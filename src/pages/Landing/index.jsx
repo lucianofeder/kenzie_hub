@@ -17,21 +17,21 @@ import {
 import landing_image from "../../img/landing_image.png";
 import kenzie_logo from "../../img/kenzie_logo.png";
 
-const Landing = () => {
+const Landing = ({ isLogged, setLogged }) => {
   const history = useHistory();
 
-  const [isLogged, setLogged] = useState(false);
-  const token = window.localStorage.getItem("authToken");
-  const user = JSON.parse(window.localStorage.getItem("user"));
+  const storedUser = JSON.parse(window.localStorage.getItem("user"));
 
   useEffect(() => {
+    const token = window.localStorage.getItem("authToken");
+    const user = JSON.parse(window.localStorage.getItem("user"));
     if (token && user && !isLogged) {
       setLogged(true);
     }
     if ((!token || !user) && isLogged) {
       setLogged(false);
     }
-  }, [isLogged, token, user]);
+  }, [isLogged, setLogged]);
 
   return (
     <>
@@ -54,7 +54,9 @@ const Landing = () => {
             <ButtonArea>
               <Button onClick={() => history.push("/new_user")}>Sign up</Button>
               {isLogged ? (
-                <ButtonLogin onClick={() => history.push(`/user/${user.id}`)}>
+                <ButtonLogin
+                  onClick={() => history.push(`/user/${storedUser.id}`)}
+                >
                   Home
                 </ButtonLogin>
               ) : (

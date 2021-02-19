@@ -12,15 +12,20 @@ import {
   Logout,
 } from "./styles";
 
-const HeaderApp = (props) => {
+const HeaderApp = ({ isLogged, setLogged, user }) => {
   const history = useHistory();
-  const { isLogged, setLogged, user } = props;
 
   const handleLogout = () => {
     localStorage.clear();
     history.push("/");
     setLogged(false);
+    console.log(isLogged);
   };
+
+  const handleClick = () => {
+    history.push(`/user/${user.id}`);
+  };
+
   return (
     <Header>
       <LogoSection>
@@ -30,13 +35,11 @@ const HeaderApp = (props) => {
       </LogoSection>
       <ProfileSection>
         {isLogged && (
-          <Avatar
-            alt="User Avatar"
-            src={user.avatar_url || male_avatar}
-            onClick={() => history.push(`/user/${user.id}`)}
-          />
+          <>
+            <Avatar alt="User Avatar" src={male_avatar} onClick={handleClick} />
+            <Logout onClick={handleLogout} />
+          </>
         )}
-        <Logout onClick={handleLogout} />
       </ProfileSection>
     </Header>
   );

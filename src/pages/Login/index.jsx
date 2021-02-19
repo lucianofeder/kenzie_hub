@@ -27,10 +27,9 @@ import login_img from "../../img/login_img.svg";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import kenzie_logo from "../../img/kenzie_logo.png";
 
-const Login = () => {
+const Login = ({ isLogged, setLogged, setUser }) => {
   const history = useHistory();
 
-  const [isLogged, setLogged] = useState(false);
   const [error, setError] = useState(false);
   const token = window.localStorage.getItem("authToken");
   const user = JSON.parse(window.localStorage.getItem("user"));
@@ -42,7 +41,7 @@ const Login = () => {
     if ((!token || !user) && isLogged) {
       setLogged(false);
     }
-  }, [isLogged, token, user, history]);
+  }, [token, user, history, isLogged, setLogged]);
 
   const schema = yup.object().shape({
     //informacoes a serem validadas antes de mandar parao backend
@@ -56,12 +55,12 @@ const Login = () => {
     api
       .post("/sessions", data)
       .then((res) => {
-        console.log(res);
+        setLogged(true);
+        setError(false);
         localStorage.clear();
         localStorage.setItem("authToken", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        setLogged(true);
-        setError(false);
+        setUser(res.data.user);
         history.push(`/user/${res.data.user.id}`);
       })
       .catch(() => setError(true));

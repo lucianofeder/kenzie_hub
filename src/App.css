@@ -14,3 +14,23 @@ body {
   width: 100vw;
   box-sizing: border-box;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #00366b49;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f88781;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ca736e;
+}

@@ -7,18 +7,24 @@ import work_img from "../../img/work_img.svg";
 import MenuAddWork from "../MenuAddWork";
 
 const UserWorks = (props) => {
-  const { works, owner, user } = props;
+  const { works, owner } = props;
   const [isWorkOpen, setWorkOpen] = useState(false);
   const [listedWorks, setListedWorks] = useState(works);
   const toggleWork = () => {
     setWorkOpen(!isWorkOpen);
   };
+
+  useEffect(() => {
+    if (listedWorks !== works) {
+      setListedWorks(works);
+    }
+  }, [listedWorks, works]);
+
   return (
     <>
       {isWorkOpen && (
         <MenuAddWork
           toggleWork={toggleWork}
-          user={user}
           listedWorks={listedWorks}
           setListedWorks={setListedWorks}
         />

@@ -15,12 +15,6 @@ export const Header = styled.header`
   z-index: 2;
 `;
 
-export const Img = styled.img`
-  width: 40px;
-  height: 40px;
-  margin: 10px 10px;
-`;
-
 export const LogoSection = styled.div`
   display: flex;
   flex-flow: row;
@@ -42,6 +36,15 @@ export const H2 = styled.h2`
   margin: 0;
   transition: 400ms;
   &:hover {
+    color: ${secundaryColor};
+  }
+`;
+
+export const Img = styled.img`
+  width: 40px;
+  height: 40px;
+  margin: 10px 10px;
+  &:hover .${H2} {
     color: ${secundaryColor};
   }
 `;

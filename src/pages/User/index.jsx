@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import api from "../../services/api";
 
 import { Container } from "../../styles/container";
@@ -10,35 +10,39 @@ import UserWorks from "../../components/UserWorks";
 
 import { DivAside } from "./styles";
 
-const User = () => {
+const User = ({ user }) => {
   const history = useHistory();
-  const params = useParams();
-  const [user, setUser] = useState();
   const [loaded, setLoaded] = useState(false);
   const [owner, setOwner] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const { id } = useParams();
+
+  const fetchData = (id) => {
+    api
+      .get(`/users/${id}`)
+      .then((res) => {
+        setCurrentUser(res.data);
+      })
+      .then(() => setLoaded(true))
+      .catch(() => history.push("/"));
+  };
 
   useEffect(() => {
-    const userID = params.id;
-    const userStored = JSON.parse(window.localStorage.getItem("user"));
-    if (userStored) {
-      const userStoredID = userStored.id;
-      if (userStoredID === userID && !owner) {
+    if (user) {
+      if (user.id === id && !owner) {
         setOwner(true);
       }
-
-      if (userStoredID !== userID && owner) {
+      if (user.id !== id && owner) {
         setOwner(false);
       }
     }
 
-    if (!user) {
-      api
-        .get(`/users/${userID}`)
-        .then((res) => setUser(res.data))
-        .then(() => setLoaded(true))
-        .catch(() => history.push("/"));
+    if (!currentUser) {
+      fetchData(id);
+    } else if (currentUser.id !== id) {
+      fetchData(id);
     }
-  }, [user, params.id, history, owner]);
+  }, [user, history, owner, currentUser, id]);
 
   return loaded ? (
     <Container>
@@ -47,13 +51,13 @@ const User = () => {
           <DivAside></DivAside>
         </Grid>
         <Grid item xs={12} sm={8}>
-          <UserHeader user={user} />
+          <UserHeader user={currentUser} />
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
-              <UserSkills skills={user.techs} owner={owner} user={user} />
+              <UserSkills skills={currentUser.techs} owner={owner} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <UserWorks works={user.works} owner={owner} user={user} />
+              <UserWorks works={currentUser.works} owner={owner} />
             </Grid>
           </Grid>
         </Grid>
