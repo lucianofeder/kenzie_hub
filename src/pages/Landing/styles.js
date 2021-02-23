@@ -13,7 +13,7 @@ export const DivRight = styled.div`
   min-height: calc(100vh - 60px - 30px);
   background-color: ${primaryColor};
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   flex-flow: column;
   padding: 12vh 0;
