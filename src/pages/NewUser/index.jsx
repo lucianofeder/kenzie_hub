@@ -52,8 +52,6 @@ const NewUser = () => {
       .oneOf([yup.ref("password")], "Password didn't match"),
 
     contact: yup.string().required("This field is required"),
-
-    bio: yup.string().required("This field is required"),
   });
 
   const { register, handleSubmit, errors, reset } = useForm({
@@ -61,6 +59,7 @@ const NewUser = () => {
   });
 
   const handleData = (data) => {
+    console.log(data);
     api
       .post("/users", { ...data })
       .then(() => {
